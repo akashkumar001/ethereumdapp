@@ -68,6 +68,7 @@ contract StarNotary is ERC721 {
         address otherOwnerAddress;
         uint256 tokenId;
         uint256 otherTokenId;
+        require(msg.sender==ownerOf(_tokenId1)||msg.sender==ownerOf(_tokenId2),"Sender is not the owner of any token");
         if( ownerOf(_tokenId1)==msg.sender){
             owner= ownerOf(_tokenId1);
             otherOwnerAddress=ownerOf(_tokenId2);
@@ -80,6 +81,7 @@ contract StarNotary is ERC721 {
            tokenId= _tokenId2;
            otherTokenId=_tokenId1;
         }
+       
         _transferFrom(owner,otherOwnerAddress, tokenId);
         _transferFrom(otherOwnerAddress,owner,otherTokenId);
         
